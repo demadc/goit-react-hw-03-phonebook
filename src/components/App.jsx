@@ -2,6 +2,9 @@ import { Component } from 'react';
 import { ContactForm } from './Form/Form';
 import { ContactsList } from './ContactList/ContactsList';
 import { Filter } from './Filter/Filter';
+import { Layout } from './Layout/Layout';
+import { Section } from './Section/Section';
+import { Header } from './Header/Header';
 
 export class App extends Component {
   state = {
@@ -63,16 +66,17 @@ export class App extends Component {
     );
 
     return (
-      <div style={{ width: 500, marginLeft: 400, marginRight: 400 }}>
-        <h2>Phonebook</h2>
-        <ContactForm onAddContact={this.handleAddContact} />
-        <h2>Contacts</h2>
-        <Filter value={this.state.filter} onFilter={this.handleFilter} />
-        <ContactsList
-          contacts={itemContacts}
-          onDeleteContact={this.handleDeleteContact}
-        />
-      </div>
+      <Layout>
+        <Section title="Phonebook">
+          <ContactForm onAddContact={this.handleAddContact} />
+          <Header title="Contacts" />
+          <Filter value={this.state.filter} onFilter={this.handleFilter} />
+          <ContactsList
+            contacts={itemContacts}
+            onDeleteContact={this.handleDeleteContact}
+          />
+        </Section>
+      </Layout>
     );
   }
 }
